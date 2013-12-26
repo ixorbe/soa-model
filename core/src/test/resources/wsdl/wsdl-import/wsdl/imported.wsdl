@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions
+        xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+        xmlns:wsp="http://www.w3.org/ns/ws-policy"
+        xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy"
+        xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns:tns="http://imported/"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns="http://schemas.xmlsoap.org/wsdl/"
+        targetNamespace="http://imported/"
+        name="DataHandlerSoapService">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://imported/" schemaLocation="../schema/importedSchema.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="uploadJson">
+        <part name="parameters" element="tns:uploadJson"/>
+    </message>
+    <message name="uploadJsonResponse">
+        <part name="parameters" element="tns:uploadJsonResponse"/>
+    </message>
+    <message name="uploadXml">
+        <part name="parameters" element="tns:uploadXml"/>
+    </message>
+    <message name="uploadXmlResponse">
+        <part name="parameters" element="tns:uploadXmlResponse"/>
+    </message>
+    <portType name="DataHandlerSoapI">
+        <operation name="uploadJson">
+            <input wsam:Action="http://imported/DataHandlerSoapI/uploadJsonRequest" message="tns:uploadJson"/>
+            <output wsam:Action="http://imported/DataHandlerSoapI/uploadJsonResponse" message="tns:uploadJsonResponse"/>
+        </operation>
+        <operation name="uploadXml">
+            <input wsam:Action="http://imported/DataHandlerSoapI/uploadXmlRequest" message="tns:uploadXml"/>
+            <output wsam:Action="http://imported/DataHandlerSoapI/uploadXmlResponse" message="tns:uploadXmlResponse"/>
+        </operation>
+    </portType>
+    <binding name="DataHandlerSoapPortBinding" type="tns:DataHandlerSoapI">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="uploadJson">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="uploadXml">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="DataHandlerSoapService">
+        <port name="DataHandlerSoapPort" binding="tns:DataHandlerSoapPortBinding">
+            <soap:address location="http://test.de/MCC_Transport/dataSoap"/>
+        </port>
+    </service>
+</definitions>

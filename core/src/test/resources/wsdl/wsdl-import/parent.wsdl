@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions
+        name="ParentService"
+        targetNamespace="http://resources.transport.mcc.ideal.com/"
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns="http://resources.transport.mcc.ideal.com/"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+    <wsdl:import
+            location="wsdl/imported.wsdl"
+            namespace="http://resources.transport.mcc.ideal.com/"/>
+    <wsdl:service name="IParentService">
+        <wsdl:port name="IParentService" binding="DataHandlerSoapPortBinding">
+            <soap:address
+                    location="http://localhost/ParentService_HTTP_PS_v001/" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
